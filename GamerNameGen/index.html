@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Ingyenes gamer névgenerátor – készíts egyedi játékosneveket Minecraft, Fortnite, Roblox és más játékokhoz.">
+<title>GamerNameGen — Ingyenes Gamer Névgenerátor</title>
+<style>
+:root{--bg:#030b19;--panel:#07162a;--panel2:#091d34;--text:#eef6ff;--muted:#a7bedb;--green:#00f5a0;--cyan:#28d8ff;--purple:#b84dff;--line:#173a60}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#17115b 0%,transparent 32%),var(--bg);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif}
+header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px clamp(18px,5vw,60px);border-bottom:1px solid var(--line);background:#030b19eF;position:sticky;top:0;z-index:2}
+.brand{font-weight:900;font-size:clamp(20px,3vw,29px);letter-spacing:-1px}.brand span{color:var(--green)}.brand b{color:var(--green);font-size:30px;margin-right:8px}
+nav{display:flex;gap:20px}nav a{color:var(--muted);text-decoration:none;font-size:14px}nav a:hover{color:var(--green)}
+main{max-width:1220px;margin:auto;padding:30px 22px 24px}
+.hero{padding:30px 0 24px;background:linear-gradient(90deg,#030b19 0%,#030b19df 47%,#030b1930 100%);border-radius:20px}
+.eyebrow{color:var(--cyan);font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:13px}
+h1{font-size:clamp(34px,5.6vw,64px);line-height:1.03;margin:12px 0 16px;font-weight:950;letter-spacing:-2px}h1 span{color:var(--green)}
+.lead{color:#c6d8ee;line-height:1.65;max-width:680px;font-size:17px}.features{display:flex;gap:28px;flex-wrap:wrap;margin-top:26px;color:var(--muted);font-size:14px}.features strong{display:block;color:var(--text);margin-bottom:4px}.features .icon{color:var(--green);font-size:23px;margin-right:10px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:20px;align-items:start}
+.box{background:linear-gradient(145deg,#06162a,#030c1a);border:1px solid var(--line);border-radius:15px;padding:23px;box-shadow:0 12px 40px #0002}
+.box h2{font-size:21px;margin:0 0 8px}.sub{color:var(--muted);font-size:14px;line-height:1.55;margin:0 0 18px}
+form{display:flex;gap:12px}input,select{background:#031124;border:1px solid #245078;border-radius:10px;color:var(--text);padding:15px 16px;font-size:15px;min-width:0;width:100%;outline:none}input:focus,select:focus{border-color:var(--green)}
+button{cursor:pointer;border:0;border-radius:10px;padding:14px 18px;font-weight:800;font-size:14px;background:var(--green);color:#00241a;white-space:nowrap;transition:transform .15s,filter .15s}button:hover{filter:brightness(1.1);transform:translateY(-1px)}button:focus-visible{outline:2px solid white;outline-offset:3px}
+.results-head{display:flex;justify-content:space-between;align-items:center;margin:25px 0 14px}.results-head h2{font-size:20px;margin:0}.count{font-size:13px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+.name-card{display:flex;align-items:center;justify-content:space-between;gap:7px;padding:14px 12px;background:#061329;border:1px solid #20466c;border-radius:11px;min-width:0}.name{font-size:16px;font-weight:900;overflow-wrap:anywhere}.copy{padding:7px 9px;background:transparent;color:#b8d7f4;font-size:18px;min-width:34px}.copy:hover{color:var(--green)}
+.settings h2{margin-bottom:20px}.label{font-size:13px;font-weight:800;margin:18px 0 9px;display:block}.choices{display:grid;grid-template-columns:1fr 1fr;gap:8px}.choice{background:#08172b;color:#c7d9ed;border:1px solid #26466a;padding:10px 8px;font-size:12px}.choice.active{border-color:var(--green);color:var(--green);box-shadow:inset 0 0 0 1px #00f5a044}.lengths{display:flex;gap:7px}.lengths .choice{flex:1}
+.toggleline{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:17px;font-size:13px}.toggleline input{width:18px;height:18px;accent-color:var(--green)}
+.tip{border-top:1px solid var(--line);padding-top:14px;margin-top:17px;color:var(--muted);font-size:12px;line-height:1.6}
+.below{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}.mini{border:1px solid var(--line);background:#061329;border-radius:13px;padding:18px}.mini b{display:block;margin-bottom:7px}.mini p{color:var(--muted);font-size:13px;line-height:1.5;margin:0}
+footer{border-top:1px solid var(--line);padding:20px 22px;color:#829dbb;font-size:12px;text-align:center;margin-top:25px}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--green);color:#00241a;padding:11px 17px;border-radius:10px;font-weight:800;display:none;z-index:5}.empty{color:var(--muted);grid-column:1/-1;padding:20px;text-align:center}
+@media(max-width:850px){.layout{grid-template-columns:1fr}.settings{order:-1}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}nav{gap:10px}nav a:nth-child(n+3){display:none}}
+@media(max-width:520px){header{padding:14px 16px}.brand{font-size:20px}nav{display:none}main{padding:20px 14px}.box{padding:17px}.hero{padding-top:15px}form{flex-direction:column}form button{width:100%}.grid{grid-template-columns:1fr 1fr}.name{font-size:14px}.below{grid-template-columns:1fr}h1{letter-spacing:-1px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><b>🎮</b>Gamer<span>NameGen</span></div>
+  <nav><a href="#home">Kezdőlap</a><a href="#generator">Generátor</a><a href="#settings">Stílusok</a><a href="#about">Rólunk</a></nav>
+</header>
+<main id="home">
+  <section class="hero">
+    <div class="eyebrow">Egyedi név. Egyedi te.</div>
+    <h1>GAMER <span>NÉVGENERÁTOR</span></h1>
+    <p class="lead">Generálj egyedi, stílusos és menő gamer neveket pillanatok alatt! Válassz stílust, adj meg egy kulcsszót, és találd meg a következő játékosnevedet.</p>
+    <div class="features">
+      <div><span class="icon">⚡</span><strong>Gyors</strong>Másodpercek alatt</div>
+      <div><span class="icon">✦</span><strong>Változatos</strong>Sokféle kombináció</div>
+      <div><span class="icon">♢</span><strong>Ingyenes</strong>Nincs regisztráció</div>
+    </div>
+  </section>
+  <div class="layout" id="generator">
+    <section class="box">
+      <h2>✨ Név generálása</h2>
+      <p class="sub">Kattints a gombra, vagy írj be egy kulcsszót, és generálj új neveket!</p>
+      <form id="genForm">
+        <input id="keyword" maxlength="18" placeholder="Pl. dragon, shadow, wolf... (opcionális)" aria-label="Opcionális kulcsszó">
+        <button type="submit">🎲 Nevek generálása</button>
+      </form>
+      <div class="results-head"><h2>✧ Generált nevek</h2><span class="count" id="count">0/18</span></div>
+      <div class="grid" id="results" aria-live="polite"></div>
+    </section>
+    <aside class="box settings" id="settings">
+      <h2>⚙️ Beállítások</h2>
+      <span class="label">Stílus</span>
+      <div class="choices" id="styles">
+        <button type="button" class="choice active" data-style="default">🔥 Alapértelmezett</button>
+        <button type="button" class="choice" data-style="fantasy">♜ Fantasy</button>
+        <button type="button" class="choice" data-style="tech">◉ Tech / Sci-Fi</button>
+        <button type="button" class="choice" data-style="dark">☾ Sötét</button>
+        <button type="button" class="choice" data-style="nature">♧ Természet</button>
+      </div>
+      <label class="label" for="game">Játék</label>
+      <select id="game">
+        <option value="any">Mindegy</option><option>Minecraft</option><option>Fortnite</option><option>Roblox</option><option>Valorant</option><option>League of Legends</option>
+      </select>
+      <span class="label">Hossz</span>
+      <div class="lengths" id="lengths">
+        <button type="button" class="choice" data-length="short">Rövid</button>
+        <button type="button" class="choice active" data-length="medium">Közepes</button>
+        <button type="button" class="choice" data-length="long">Hosszú</button>
+      </div>
+      <label class="toggleline"><span>Tartalmazzon számokat?</span><input type="checkbox" id="numbers" checked></label>
+      <label class="toggleline"><span>Aláhúzás engedélyezése?</span><input type="checkbox" id="underscores"></label>
+      <div class="tip">💡 Tipp: adj meg egy kulcsszót, ha szeretnél valamilyen témához kapcsolódó nevet. A generátor helyben, a böngésződben működik.</div>
+    </aside>
+  </div>
+  <section class="below" id="about">
+    <div class="mini"><b>🎮 Többféle stílus</b><p>Találd meg a hozzád illő nevet a különböző hangulatok között.</p></div>
+    <div class="mini"><b>⚡ Gyors és egyszerű</b><p>Csak kattints, és máris új ötleteket kapsz.</p></div>
+    <div class="mini"><b>📋 Egy kattintásos másolás</b><p>Másold a kedvenc nevedet a vágólapra, és használd ott, ahol elérhető.</p></div>
+  </section>
+</main>
+<footer>© <span id="year"></span> GamerNameGen · Nem hivatalos, rajongói névgenerátor. A játékok nevei a tulajdonosaik védjegyei.</footer>
+<div class="toast" id="toast" role="status">Név másolva! ✓</div>
+<script>
+const wordSets = {
+ default:{a:["Shadow","Frost","Night","Pixel","Dark","Blaze","Iron","Ghost","Zenith","Rogue","Solar","Void","Storm","Nova","Echo","Rapid","Lucky","Cyber","Wolf","Viper"],b:["Rex","Zer0","Vortex","Wolf","Sage","X","Flame","ly","Fang","Master","Strike","Nova","Pulse","Rider","Byte","Quest","Knight","Drift"]},
+ fantasy:{a:["Dragon","Mystic","Rune","Arcane","Elder","Fable","Crystal","Wizard","Phoenix","Mythic","Rune","Storm"],b:["Mage","Slayer","Quest","Warden","Knight","Caster","Blade","Drake","Legend","Spirit","Seeker"]},
+ tech:{a:["Cyber","Neon","Quantum","Pixel","Nano","Hyper","Glitch","Mecha","Data","Zero","Astro","Volt"],b:["Byte","Core",".exe","X","Protocol","Circuit","Bot","Shift","Pulse","Drive","Flux"]},
+ dark:{a:["Void","Grim","Shadow","Dread","Phantom","Night","Raven","Dusk","Wraith","Abyss","Silent","Crypt"],b:["Reaper","Spectre","Fang","Shade","Walker","Whisper","Hollow","Rogue","Bane","Soul"]},
+ nature:{a:["Wild","Mossy","Frost","River","Oak","Cinder","Storm","Lunar","Maple","Clover","Wolf","Cloud"],b:["Fern","Fox","Bloom","Paw","Grove","Leaf","Hawk","Trail","Bear","Sprout"]}
+};
+let style="default", length="medium";
+const $=id=>document.getElementById(id);
+function pick(arr){return arr[Math.floor(Math.random()*arr.length)]}
+function titleCase(s){return s.charAt(0).toUpperCase()+s.slice(1)}
+function makeName(){
+ const key=$("keyword").value.trim().replace(/[^a-zA-Z0-9]/g,"");
+ const set=wordSets[style]; let name;
+ if(key && Math.random()<0.72){
+   const word=pick(set.b);
+   name = length==="short" ? (key.slice(0,8)+pick(["X","Z","Pro"])) : length==="long" ? titleCase(key.slice(0,12))+titleCase(pick(set.b))+pick(["","X","TV","GG"]) : titleCase(key.slice(0,10))+titleCase(word);
+ }else{
+   name=pick(set.a)+pick(set.b);
+ }
+ if($("numbers").checked && Math.random()<0.7) name += pick(["7","9","21","77","X","0","99"]);
+ if($("underscores").checked && Math.random()<0.25) name=name.slice(0,Math.max(1,Math.floor(name.length/2)))+"_"+name.slice(Math.max(1,Math.floor(name.length/2)));
+ if(length==="short") name=name.slice(0,10);
+ if(length==="long" && name.length<12) name+=pick(["Legend","Gaming","YT"]);
+ return name;
+}
+function generate(){
+ const names=new Set(); let attempts=0;
+ while(names.size<18 && attempts<300){names.add(makeName());attempts++}
+ const results=$("results");results.innerHTML="";
+ [...names].forEach((name,i)=>{
+  const card=document.createElement("div");card.className="name-card";
+  const label=document.createElement("span");label.className="name";label.textContent=name;
+  label.style.color=["#c14dff","#28d8ff","#ffb52e","#00f5a0","#ff4f83","#f3f7ff"][i%6];
+  const btn=document.createElement("button");btn.className="copy";btn.type="button";btn.title="Név másolása";btn.setAttribute("aria-label",name+" másolása");btn.textContent="▢";
+  btn.addEventListener("click",()=>copyName(name));card.append(label,btn);results.append(card);
+ });
+ $("count").textContent=names.size+"/18";
+}
+async function copyName(name){
+ try{await navigator.clipboard.writeText(name)}catch(e){
+  const area=document.createElement("textarea");area.value=name;document.body.append(area);area.select();document.execCommand("copy");area.remove();
+ }
+ $("toast").style.display="block";setTimeout(()=>$("toast").style.display="none",1600);
+}
+$("genForm").addEventListener("submit",e=>{e.preventDefault();generate()});
+$("styles").addEventListener("click",e=>{const btn=e.target.closest("[data-style]");if(!btn)return;style=btn.dataset.style;document.querySelectorAll("[data-style]").forEach(b=>b.classList.toggle("active",b===btn));generate()});
+$("lengths").addEventListener("click",e=>{const btn=e.target.closest("[data-length]");if(!btn)return;length=btn.dataset.length;document.querySelectorAll("[data-length]").forEach(b=>b.classList.toggle("active",b===btn));generate()});
+$("game").addEventListener("change",()=>{const game=$("game").value;if(game!=="any" && !$("keyword").value.trim()) $("keyword").value=game==="League of Legends"?"rift":game.toLowerCase();generate()});
+$("numbers").addEventListener("change",generate);$("underscores").addEventListener("change",generate);
+$("year").textContent=new Date().getFullYear();generate();
+</script>
+</body>
+</html>
